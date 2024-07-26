@@ -20,6 +20,7 @@ resource "random_integer" "bucket_int" {
 
 resource "aws_sns_topic" "topic" {
   name              = var.topic_name
+  policy            = data.aws_iam_policy_document.topic.json
 }
 
 
@@ -38,4 +39,6 @@ resource "aws_sns_topic_subscription" "email" {
   protocol  = "email"
   topic_arn = aws_sns_topic.topic.arn
 }
+
+
 
